@@ -3,20 +3,22 @@ import { Component } from "react";
 import ContactItem from "./ContactItem";
 
 class ContactList extends Component {
+  contactsToContactItem = contact => {
+    return (
+      <ContactItem
+        key={contact.phone}
+        name={contact.name}
+        email={contact.email}
+        picture={contact.picture}
+      />
+    );
+  };
+
   render() {
+    console.log(this.props);
     return (
       <ul className="ui relaxed divided list selection">
-        <ContactItem
-          login="typeofweb1"
-          name="Lena"
-          department="JavaScript Developer"
-        />
-        <ContactItem
-          login="typeofweb2"
-          name="Brian"
-          department="Human Resources"
-        />
-        <ContactItem login="typeofweb3" name="Rick" department="QA" />
+        {this.props.contacts.map(this.contactsToContactItem)}
       </ul>
     );
   }
